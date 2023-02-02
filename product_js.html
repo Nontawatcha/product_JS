@@ -20,12 +20,22 @@
         console.log(cart);
         showCart();
     }
+    function delCart(index){
+        //alert(index);
+        cart.splice(index,1);
+        showCart();
+    }
+    function clearCart(){
+        cart.splice(0,cart.length);
+        showCart();
+    }
     function showCart(){
         let cartdiv = document.getElementById("cart");
         cartdiv.innerHTML="";
         let total=0;
         for(let i=0;i<cart.length;i++){
-            cartdiv.innerHTML+=cart[i].name+" "+cart[i].price+"</br>";
+            cartdiv.innerHTML+=cart[i].name+" "+cart[i].price;
+            cartdiv.inertHTML+="<button type='button' onclick='delCart("+i+")' >del</button></br>";
             total +=cart[i].price;
         }
         cartdiv.innerHTML+="<h4>Total: "+total+"baht</h4>";
@@ -41,7 +51,7 @@
     }
     document.write("</table>");
 </script>
-<h3>Cart</h3>
+<h3>Cart <button type='button' oneclick="clearCart()">Clear all</button></br></h3>
 <div id ="cart"></div>
 </body>
 
